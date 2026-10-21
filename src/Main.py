@@ -274,3 +274,73 @@ plt.close()
 
 print("\n=== ANALYSIS COMPLETE ===")
 print(f"Results saved to: {OUTPUT.resolve()}")
+
+
+# ==================================================
+# 7B. SECONDARY PROMOTION ANALYSIS
+# ==================================================
+
+other_promotions = [
+    "coffee_rewards_bonus",
+    "sweet_treat_offer",
+    "summer_lunch_deal",
+    "breakfast_bundle",
+    "hot_drink_bundle"
+]
+
+other_results = []
+
+for promo in other_promotions:
+    term = (
+        "C(other_promotion, Treatment(reference='none'))"
+        f"[T.{promo}]"
+    )
+
+    if term not in sales_model.params:
+        continue
+
+    sales_effect = sales_model.params[term]
+    revenue_effect = revenue_model.params[term]
+
+    sales_ci = sales_model.conf_int().loc[term]
+
+    subset = sales_data[
+        sales_data["other_promotion"] == promo
+    ].copy()
+
+    baseline = subset.copy()
+    baseline["other_promotion"] = "none"
+
+    expected_sales = sales_model.predict(baseline).sum()
+
+    incremental_units = sales_effect * len(subset)
+
+    revenue_days = (
+        revenue_data["other_promotion"] == promo
+    ).sum()
+
+    other_results.append({
+        "promotion": promo,
+        "store_days": len(subset),
+        "baseline_units": expected_sales,
+        "incremental_units": incremental_units,
+        "uplift_pct": (
+            incremental_units / expected_sales * 100
+            if expected_sales > 0 else np.nan
+        ),
+        "sales_effect_per_store_day": sales_effect,
+        "sales_ci_low": sales_ci.iloc[0],
+        "sales_ci_high": sales_ci.iloc[1],
+        "sales_p_value": sales_model.pvalues[term],
+        "incremental_revenue_gbp": revenue_effect * revenue_days
+    })
+
+other_results = pd.DataFrame(other_results)
+
+other_results.to_csv(
+    OUTPUT / "other_promotion_results.csv",
+    index=False
+)
+
+print("\n=== SECONDARY PROMOTION RESULTS ===")
+print(other_results.round(2).to_string(index=False))
