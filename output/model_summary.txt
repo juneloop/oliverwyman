@@ -1,0 +1,107 @@
+SALES MODEL
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:     sausage_rolls_sold   R-squared:                       0.503
+Model:                            OLS   Adj. R-squared:                  0.497
+Method:                 Least Squares   F-statistic:                     64.63
+Date:                Wed, 21 Oct 2026   Prob (F-statistic):          1.10e-169
+Time:                        14:29:18   Log-Likelihood:                -9503.7
+No. Observations:                2183   AIC:                         1.906e+04
+Df Residuals:                    2156   BIC:                         1.922e+04
+Df Model:                          26                                         
+Covariance Type:              cluster                                         
+===========================================================================================================================================
+                                                                              coef    std err          z      P>|z|      [0.025      0.975]
+-------------------------------------------------------------------------------------------------------------------------------------------
+Intercept                                                                  92.8099      1.629     56.958      0.000      89.616      96.004
+C(promotion, Treatment(reference='none'))[T.20_percent_off]                31.2824      3.438      9.099      0.000      24.544      38.021
+C(promotion, Treatment(reference='none'))[T.one_pound_week]                71.7774     11.055      6.493      0.000      50.111      93.444
+C(promotion, Treatment(reference='none'))[T.two_for_2]                     75.2146      5.718     13.155      0.000      64.008      86.421
+C(other_promotion, Treatment(reference='none'))[T.breakfast_bundle]         9.7641      1.459      6.692      0.000       6.904      12.624
+C(other_promotion, Treatment(reference='none'))[T.coffee_rewards_bonus]    11.2208      1.809      6.202      0.000       7.675      14.767
+C(other_promotion, Treatment(reference='none'))[T.hot_drink_bundle]         7.0330      1.596      4.408      0.000       3.906      10.160
+C(other_promotion, Treatment(reference='none'))[T.summer_lunch_deal]       -3.7811      1.320     -2.864      0.004      -6.368      -1.194
+C(other_promotion, Treatment(reference='none'))[T.sweet_treat_offer]        0.4046      1.361      0.297      0.766      -2.262       3.071
+C(store_id)[T.NCL-OQ-01]                                                  -18.8770      1.166    -16.187      0.000     -21.163     -16.591
+C(store_id)[T.NCL-SJ-02]                                                    4.4480      0.971      4.582      0.000       2.545       6.351
+C(day_name)[T.Monday]                                                     -15.1540      0.895    -16.937      0.000     -16.908     -13.400
+C(day_name)[T.Saturday]                                                    -0.3062      1.094     -0.280      0.779      -2.450       1.837
+C(day_name)[T.Sunday]                                                     -17.4536      0.955    -18.274      0.000     -19.325     -15.582
+C(day_name)[T.Thursday]                                                    -9.1042      0.943     -9.652      0.000     -10.953      -7.255
+C(day_name)[T.Tuesday]                                                    -13.1958      0.889    -14.840      0.000     -14.939     -11.453
+C(day_name)[T.Wednesday]                                                  -13.6302      0.937    -14.547      0.000     -15.467     -11.794
+trend                                                                       0.0011      0.001      0.739      0.460      -0.002       0.004
+annual_sin                                                                  1.6993      0.978      1.738      0.082      -0.217       3.616
+annual_cos                                                                 -2.2954      0.420     -5.459      0.000      -3.120      -1.471
+temperature_c                                                              -0.4381      0.118     -3.719      0.000      -0.669      -0.207
+rain_mm                                                                    -0.3978      0.071     -5.593      0.000      -0.537      -0.258
+home_match_day                                                             21.3354      1.365     15.630      0.000      18.660      24.011
+school_holidays                                                             3.8234      0.687      5.563      0.000       2.476       5.170
+post_20_percent_off                                                        -1.5485      1.520     -1.019      0.308      -4.527       1.430
+post_two_for_2                                                             -3.6831      1.439     -2.559      0.011      -6.504      -0.862
+post_one_pound_week                                                        -3.1597      1.175     -2.689      0.007      -5.463      -0.857
+==============================================================================
+Omnibus:                      492.244   Durbin-Watson:                   1.595
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):             3530.340
+Skew:                           0.870   Prob(JB):                         0.00
+Kurtosis:                       8.982   Cond. No.                     4.42e+03
+==============================================================================
+
+Notes:
+[1] Standard Errors are robust to cluster correlation (CRV1)
+[2] The condition number is large, 4.42e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.
+
+REVENUE MODEL
+                               OLS Regression Results                               
+====================================================================================
+Dep. Variable:     sausage_roll_takings_gbp   R-squared:                       0.434
+Model:                                  OLS   Adj. R-squared:                  0.428
+Method:                       Least Squares   F-statistic:                     75.75
+Date:                      Wed, 21 Oct 2026   Prob (F-statistic):          2.19e-187
+Time:                              14:29:18   Log-Likelihood:                -9996.0
+No. Observations:                      2180   AIC:                         2.005e+04
+Df Residuals:                          2153   BIC:                         2.020e+04
+Df Model:                                26                                         
+Covariance Type:                    cluster                                         
+===========================================================================================================================================
+                                                                              coef    std err          z      P>|z|      [0.025      0.975]
+-------------------------------------------------------------------------------------------------------------------------------------------
+Intercept                                                                 117.8525      2.044     57.646      0.000     113.845     121.859
+C(promotion, Treatment(reference='none'))[T.20_percent_off]                13.8323      3.652      3.788      0.000       6.674      20.990
+C(promotion, Treatment(reference='none'))[T.one_pound_week]                43.2979     10.843      3.993      0.000      22.046      64.550
+C(promotion, Treatment(reference='none'))[T.two_for_2]                     60.6752      5.753     10.547      0.000      49.400      71.950
+C(other_promotion, Treatment(reference='none'))[T.breakfast_bundle]        13.6240      1.899      7.175      0.000       9.902      17.346
+C(other_promotion, Treatment(reference='none'))[T.coffee_rewards_bonus]    15.9054      2.455      6.478      0.000      11.093      20.718
+C(other_promotion, Treatment(reference='none'))[T.hot_drink_bundle]         8.3376      2.008      4.153      0.000       4.402      12.273
+C(other_promotion, Treatment(reference='none'))[T.summer_lunch_deal]       -5.1246      1.702     -3.011      0.003      -8.460      -1.789
+C(other_promotion, Treatment(reference='none'))[T.sweet_treat_offer]       -0.6818      1.733     -0.393      0.694      -4.079       2.715
+C(store_id)[T.NCL-OQ-01]                                                  -24.1338      1.493    -16.162      0.000     -27.060     -21.207
+C(store_id)[T.NCL-SJ-02]                                                    5.6110      1.212      4.628      0.000       3.235       7.987
+C(day_name)[T.Monday]                                                     -19.6835      1.151    -17.100      0.000     -21.940     -17.428
+C(day_name)[T.Saturday]                                                    -0.5893      1.324     -0.445      0.656      -3.184       2.005
+C(day_name)[T.Sunday]                                                     -22.4217      1.210    -18.529      0.000     -24.793     -20.050
+C(day_name)[T.Thursday]                                                   -11.6090      1.204     -9.643      0.000     -13.969      -9.249
+C(day_name)[T.Tuesday]                                                    -16.9230      1.133    -14.939      0.000     -19.143     -14.703
+C(day_name)[T.Wednesday]                                                  -17.4542      1.195    -14.609      0.000     -19.796     -15.113
+trend                                                                       0.0118      0.002      6.313      0.000       0.008       0.016
+annual_sin                                                                  2.6516      1.229      2.157      0.031       0.243       5.061
+annual_cos                                                                 -3.2103      0.544     -5.905      0.000      -4.276      -2.145
+temperature_c                                                              -0.6620      0.148     -4.470      0.000      -0.952      -0.372
+rain_mm                                                                    -0.5129      0.090     -5.730      0.000      -0.688      -0.337
+home_match_day                                                             27.2427      1.563     17.433      0.000      24.180      30.306
+school_holidays                                                             4.2486      0.846      5.025      0.000       2.591       5.906
+post_20_percent_off                                                        -1.9395      1.912     -1.014      0.310      -5.687       1.808
+post_two_for_2                                                             -5.1626      1.846     -2.796      0.005      -8.781      -1.544
+post_one_pound_week                                                        -4.2253      1.603     -2.635      0.008      -7.368      -1.083
+==============================================================================
+Omnibus:                      249.358   Durbin-Watson:                   1.595
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              711.271
+Skew:                           0.608   Prob(JB):                    3.54e-155
+Kurtosis:                       5.520   Cond. No.                     4.41e+03
+==============================================================================
+
+Notes:
+[1] Standard Errors are robust to cluster correlation (CRV1)
+[2] The condition number is large, 4.41e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.
